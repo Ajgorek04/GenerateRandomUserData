@@ -86,7 +86,7 @@ hr {
 
 .listOfUsers li {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 1rem;
 }
 
@@ -97,7 +97,7 @@ hr {
     font-size: 1.1rem;
 }
 
-.listOfUsers li div img {
+.listOfUsers li img {
     width: 100px;
     border-radius: 50%;
 }
