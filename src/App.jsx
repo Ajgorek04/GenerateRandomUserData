@@ -1,8 +1,22 @@
 import "./App.css";
 import { Checked } from "../components/Checked";
 import { Generate } from "../components/Generate";
+import { useState } from "react";
 
 function App() {
+    const [selectedOptions, setSelectedOptions] = useState([
+        "ID",
+        "Login",
+        "Email",
+        "Gender",
+        "Name",
+        "Phone",
+        "Date of Birth",
+        "Location",
+        "Registration Date",
+        "Picture",
+    ]);
+
     return (
         <div className="container">
             <header>
@@ -14,8 +28,11 @@ function App() {
                 className="userPNG"
             />
             <p className="pText">Choose what data you want to generate</p>
-            <Checked />
-            <Generate />
+            <Checked
+                selectedOptions={selectedOptions}
+                setSelectedOptions={setSelectedOptions}
+            />
+            <Generate selectedOptions={selectedOptions} />
         </div>
     );
 }

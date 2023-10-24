@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function Generate() {
+export function Generate({ selectedOptions }) {
     const [quantity, setQuantity] = useState(1);
 
     const handleQuantityChange = (e) => {
@@ -13,6 +13,7 @@ export function Generate() {
             setQuantity(10);
         } else {
             console.log(quantity);
+            console.log(selectedOptions);
         }
     };
 

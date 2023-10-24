@@ -1,4 +1,4 @@
-export function Checked() {
+export function Checked({ selectedOptions, setSelectedOptions }) {
     const options = [
         "ID",
         "Login",
@@ -12,6 +12,16 @@ export function Checked() {
         "Picture",
     ];
 
+    const handleCheckboxChange = (option) => {
+        if (selectedOptions.includes(option)) {
+            setSelectedOptions(
+                selectedOptions.filter((item) => item != option)
+            );
+        } else {
+            setSelectedOptions([...selectedOptions, option]);
+        }
+    };
+
     return (
         <div className="options">
             {options.map((option, index) => (
@@ -20,7 +30,8 @@ export function Checked() {
                         type="checkbox"
                         key={index}
                         name={option}
-                        defaultChecked={true}
+                        checked={selectedOptions.includes(option)}
+                        onChange={() => handleCheckboxChange(option)}
                     />
                     <label htmlFor={option}>{option}</label>
                 </div>
