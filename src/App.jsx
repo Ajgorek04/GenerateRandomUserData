@@ -2,6 +2,7 @@ import "./App.css";
 import { Checked } from "../components/Checked";
 import { Generate } from "../components/Generate";
 import { useState } from "react";
+import { List } from "../components/List";
 
 function App() {
     const [selectedOptions, setSelectedOptions] = useState([
@@ -17,6 +18,14 @@ function App() {
         "Picture",
     ]);
 
+    const [showList, setShowList] = useState(false);
+    const [showSelectedCheckbox, setShowSelectedCheckbox] = useState(true);
+
+    const handleShowList = () => {
+        setShowList(true);
+        setShowSelectedCheckbox(false);
+    };
+
     return (
         <div className="container">
             <header>
@@ -28,11 +37,20 @@ function App() {
                 className="userPNG"
             />
             <p className="pText">Choose what data you want to generate</p>
-            <Checked
+            {showSelectedCheckbox && (
+                <Checked
+                    selectedOptions={selectedOptions}
+                    setSelectedOptions={setSelectedOptions}
+                />
+            )}
+
+            <Generate
                 selectedOptions={selectedOptions}
-                setSelectedOptions={setSelectedOptions}
+                handleShowList={handleShowList}
+                showSelectedCheckbox={showSelectedCheckbox}
+                setShowSelectedCheckbox={setShowSelectedCheckbox}
             />
-            <Generate selectedOptions={selectedOptions} />
+            {showList && <List selectedOptions={selectedOptions} />}
         </div>
     );
 }

@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-export function Generate({ selectedOptions }) {
+export function Generate({
+    selectedOptions,
+    handleShowList,
+    setShowSelectedCheckbox,
+}) {
     const [quantity, setQuantity] = useState(1);
 
     const handleQuantityChange = (e) => {
@@ -14,9 +18,10 @@ export function Generate({ selectedOptions }) {
         } else {
             console.log(quantity);
             console.log(selectedOptions);
+            handleShowList();
+            setShowSelectedCheckbox(false);
         }
     };
-
     return (
         <div className="generate">
             <input
