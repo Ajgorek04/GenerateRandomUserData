@@ -21,6 +21,8 @@ function App() {
     const [showList, setShowList] = useState(false);
     const [showSelectedCheckbox, setShowSelectedCheckbox] = useState(true);
 
+    const [generatedData, setGeneratedData] = useState(null);
+
     const handleShowList = () => {
         setShowList(true);
         setShowSelectedCheckbox(false);
@@ -45,12 +47,18 @@ function App() {
             )}
 
             <Generate
-                selectedOptions={selectedOptions}
                 handleShowList={handleShowList}
                 showSelectedCheckbox={showSelectedCheckbox}
                 setShowSelectedCheckbox={setShowSelectedCheckbox}
+                setGeneratedData={setGeneratedData}
+                generatedData={generatedData}
             />
-            {showList && <List selectedOptions={selectedOptions} />}
+            {showList && generatedData && (
+                <List
+                    selectedOptions={selectedOptions}
+                    generatedData={generatedData}
+                />
+            )}
         </div>
     );
 }

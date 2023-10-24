@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 export function Generate({
-    selectedOptions,
     handleShowList,
     setShowSelectedCheckbox,
+    setGeneratedData,
 }) {
     const [quantity, setQuantity] = useState(1);
 
@@ -11,17 +11,27 @@ export function Generate({
         setQuantity(e.target.value);
     };
 
-    const handleGenerateClick = () => {
+    const handleGenerateClick = async () => {
         if (quantity > 10) {
             alert("Max Value is 10");
             setQuantity(10);
         } else {
-            console.log(quantity);
-            console.log(selectedOptions);
-            handleShowList();
-            setShowSelectedCheckbox(false);
+            try {
+                const response = await fetch(`https://randomuser.me/api/`);
+                if (response.ok) {
+                    const data = await response.json();
+                    setGeneratedData(data);
+                    handleShowList();
+                    setShowSelectedCheckbox(false);
+                } else {
+                    console.error("Error with API");
+                }
+            } catch (error) {
+                console.error("Error: ", error);
+            }
         }
     };
+
     return (
         <div className="generate">
             <input
