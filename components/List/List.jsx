@@ -1,3 +1,5 @@
+import styles from "./List.module.css";
+
 export function List({ selectedOptions, generatedData }) {
     const data = generatedData.results[0];
     console.log(data);
@@ -5,7 +7,7 @@ export function List({ selectedOptions, generatedData }) {
     return (
         <>
             <hr />
-            <ul className="listOfUsers">
+            <ul className={styles.listOfUsers}>
                 {selectedOptions.map((option, index) => (
                     <li key={index}>
                         <div>
@@ -40,9 +42,7 @@ function getFieldName(fieldName, data) {
         case "Registration Date":
             return data.registered.date;
         case "Picture":
-            return (
-                <img className="" src={data.picture.large} alt="User Picture" />
-            );
+            return <img src={data.picture.large} alt="User Picture" />;
         default:
             return "";
     }

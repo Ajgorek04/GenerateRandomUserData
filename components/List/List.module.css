@@ -1,0 +1,29 @@
+hr {
+    margin-top: 2rem;
+}
+
+.listOfUsers {
+    margin-top: 2rem;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.listOfUsers li {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.listOfUsers li div {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-size: 1.1rem;
+}
+
+.listOfUsers li img {
+    width: 100px;
+    border-radius: 50%;
+}

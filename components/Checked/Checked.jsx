@@ -1,3 +1,5 @@
+import styles from "./Checked.module.css";
+
 export function Checked({ selectedOptions, setSelectedOptions }) {
     const options = [
         "ID",
@@ -23,7 +25,7 @@ export function Checked({ selectedOptions, setSelectedOptions }) {
     };
 
     return (
-        <div className="options">
+        <div className={styles.options}>
             {options.map((option, index) => (
                 <div key={index} className="inpLab">
                     <input

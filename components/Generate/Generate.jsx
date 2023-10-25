@@ -1,3 +1,4 @@
+import styles from "./Generate.module.css";
 import { useState } from "react";
 
 export function Generate({
@@ -33,7 +34,7 @@ export function Generate({
     };
 
     return (
-        <div className="generate">
+        <div className={styles.generate}>
             <input
                 type="number"
                 min="1"
