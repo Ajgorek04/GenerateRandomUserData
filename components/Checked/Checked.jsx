@@ -27,7 +27,7 @@ export function Checked({ selectedOptions, setSelectedOptions }) {
     return (
         <div className={styles.options}>
             {options.map((option, index) => (
-                <div key={index} className="inpLab">
+                <div key={index} className={styles.inpLab}>
                     <input
                         type="checkbox"
                         key={index}
