@@ -18,15 +18,19 @@ export function Generate({
             setQuantity(10);
         } else {
             try {
-                const response = await fetch(`https://randomuser.me/api/`);
-                if (response.ok) {
-                    const data = await response.json();
-                    setGeneratedData(data);
-                    handleShowList();
-                    setShowSelectedCheckbox(false);
-                } else {
-                    console.error("Error with API");
+                const generatedData = [];
+                for (let i = 0; i < quantity; i++) {
+                    const response = await fetch(`https://randomuser.me/api/`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        generatedData.push(data);
+                    } else {
+                        console.error("Error with API");
+                    }
                 }
+                setGeneratedData(generatedData);
+                handleShowList();
+                setShowSelectedCheckbox(false);
             } catch (error) {
                 console.error("Error: ", error);
             }

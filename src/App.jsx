@@ -20,7 +20,7 @@ function App() {
 
     const [showList, setShowList] = useState(false);
     const [showSelectedCheckbox, setShowSelectedCheckbox] = useState(true);
-    const [quantity, setQuantity] = useState(3); // tu quanity
+    const [quantity, setQuantity] = useState(3);
 
     const [generatedData, setGeneratedData] = useState(null);
 

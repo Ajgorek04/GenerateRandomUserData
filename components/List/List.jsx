@@ -1,23 +1,32 @@
 import styles from "./List.module.css";
 
 export function List({ selectedOptions, generatedData }) {
-    const data = generatedData.results[0];
-    console.log(data);
+    const users = [];
+
+    for (let i = 0; i < generatedData.length; i++) {
+        const data = generatedData[i].results[0];
+        const user = (
+            <li key={`user${i}`}>
+                <hr />
+                <p className={styles.user}> User {i + 1}</p>
+
+                {selectedOptions.map((option, index) => (
+                    <div key={index}>
+                        <strong> {option} </strong>
+                        <p> {getFieldName(option, data)} </p>
+                    </div>
+                ))}
+            </li>
+        );
+
+        users.push(user);
+    }
 
     return (
-        <>
+        <ul className={styles.listOfUsers}>
+            {users}
             <hr />
-            <ul className={styles.listOfUsers}>
-                {selectedOptions.map((option, index) => (
-                    <li key={index}>
-                        <div>
-                            <strong> {option} </strong>
-                            <p> {getFieldName(option, data)} </p>
-                        </div>
-                    </li>
-                ))}
-            </ul>
-        </>
+        </ul>
     );
 }
 
