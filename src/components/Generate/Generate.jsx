@@ -29,6 +29,7 @@ export function Generate({
             try {
                 setLoading(true);
                 setShowContent(false);
+                setShowSelectedCheckbox(false);
 
                 const generatedData = [];
                 for (let i = 0; i < quantity; i++) {
@@ -41,13 +42,13 @@ export function Generate({
                     }
                 }
                 setGeneratedData(generatedData);
-                handleShowList();
-                setShowSelectedCheckbox(false);
             } catch (error) {
                 console.error("Error: ", error);
             } finally {
                 setLoading(false);
                 setShowContent(true);
+                handleShowList();
+                setShowSelectedCheckbox(true);
             }
         }
     };
@@ -63,9 +64,7 @@ export function Generate({
                         value={quantity}
                         onChange={handleQuantityChange}
                     />
-                    <button type="submit" onClick={handleGenerateClick}>
-                        Generate
-                    </button>
+                    <button onClick={handleGenerateClick}>Generate</button>
                 </>
             ) : (
                 <h2>Generating...</h2>

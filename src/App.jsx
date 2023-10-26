@@ -1,8 +1,8 @@
 import "./App.css";
 import { useState } from "react";
-import { Checked } from "../components/Checked/Checked";
-import { Generate } from "../components/Generate/Generate";
-import { List } from "../components/List/List";
+import { Checked } from "./components/Checked/Checked";
+import { Generate } from "./components/Generate/Generate";
+import { List } from "./components/List/List";
 
 function App() {
     const [selectedOptions, setSelectedOptions] = useState([
