@@ -7,6 +7,8 @@ export function Generate({
     setGeneratedData,
 }) {
     const [quantity, setQuantity] = useState(1);
+    const [loading, setLoading] = useState(false);
+    const [showContent, setShowContent] = useState(true);
 
     const handleQuantityChange = (e) => {
         const value = parseInt(e.target.value);
@@ -14,6 +16,10 @@ export function Generate({
     };
 
     const handleGenerateClick = async () => {
+        if (loading) {
+            return;
+        }
+
         if (quantity > 10) {
             alert("Max Value is 10");
             setQuantity(10);
@@ -21,6 +27,9 @@ export function Generate({
             alert("Please enter a valid value");
         } else {
             try {
+                setLoading(true);
+                setShowContent(false);
+
                 const generatedData = [];
                 for (let i = 0; i < quantity; i++) {
                     const response = await fetch(`https://randomuser.me/api/`);
@@ -36,22 +45,31 @@ export function Generate({
                 setShowSelectedCheckbox(false);
             } catch (error) {
                 console.error("Error: ", error);
+            } finally {
+                setLoading(false);
+                setShowContent(true);
             }
         }
     };
 
     return (
         <div className={styles.generate}>
-            <input
-                type="number"
-                min="1"
-                max="10"
-                value={quantity}
-                onChange={handleQuantityChange}
-            />
-            <button type="submit" onClick={handleGenerateClick}>
-                Generate
-            </button>
+            {showContent ? (
+                <>
+                    <input
+                        type="number"
+                        min="1"
+                        max="10"
+                        value={quantity}
+                        onChange={handleQuantityChange}
+                    />
+                    <button type="submit" onClick={handleGenerateClick}>
+                        Generate
+                    </button>
+                </>
+            ) : (
+                <h2>Generating...</h2>
+            )}
         </div>
     );
 }
