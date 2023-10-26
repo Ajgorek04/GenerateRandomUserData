@@ -9,13 +9,16 @@ export function Generate({
     const [quantity, setQuantity] = useState(1);
 
     const handleQuantityChange = (e) => {
-        setQuantity(e.target.value);
+        const value = parseInt(e.target.value);
+        setQuantity(value);
     };
 
     const handleGenerateClick = async () => {
         if (quantity > 10) {
             alert("Max Value is 10");
             setQuantity(10);
+        } else if (isNaN(quantity) || quantity === 0) {
+            alert("Please enter a valid value");
         } else {
             try {
                 const generatedData = [];
