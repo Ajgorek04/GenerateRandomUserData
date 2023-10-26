@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Checked } from "./components/Checked/Checked";
 import { Generate } from "./components/Generate/Generate";
 import { List } from "./components/List/List";
-import { Alert } from "./components/Alert/Alert";
 
 function App() {
     const [selectedOptions, setSelectedOptions] = useState([
@@ -60,7 +59,6 @@ function App() {
                     quantity={quantity}
                 />
             )}
-            <Alert />
         </div>
     );
 }
