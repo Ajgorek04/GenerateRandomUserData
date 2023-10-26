@@ -27,27 +27,27 @@ export function Generate({
             alert("Please enter a valid value");
         } else {
             try {
+                setShowSelectedCheckbox(false);
                 setLoading(true);
                 setShowContent(false);
-                setShowSelectedCheckbox(false);
 
-                const generatedData = [];
+                const requests = [];
                 for (let i = 0; i < quantity; i++) {
-                    const response = await fetch(`https://randomuser.me/api/`);
-                    if (response.ok) {
-                        const data = await response.json();
-                        generatedData.push(data);
-                    } else {
-                        console.error("Error with API");
-                    }
+                    requests.push(fetch(`https://randomuser.me/api/`));
                 }
+
+                const responses = await Promise.all(requests);
+                const generatedData = await Promise.all(
+                    responses.map((response) => response.json())
+                );
+
                 setGeneratedData(generatedData);
+                handleShowList();
             } catch (error) {
                 console.error("Error: ", error);
             } finally {
                 setLoading(false);
                 setShowContent(true);
-                handleShowList();
                 setShowSelectedCheckbox(true);
             }
         }
