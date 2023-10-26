@@ -1,8 +1,10 @@
 import "./App.css";
+import userIcon from "./assets/userIcon.png";
 import { useState } from "react";
 import { Checked } from "./components/Checked/Checked";
 import { Generate } from "./components/Generate/Generate";
 import { List } from "./components/List/List";
+import { Alert } from "./components/Alert/Alert";
 
 function App() {
     const [selectedOptions, setSelectedOptions] = useState([
@@ -34,11 +36,7 @@ function App() {
             <header>
                 <h1>Generate Random User Data</h1>
             </header>
-            <img
-                src="./src/assets/userIcon.png"
-                alt="img"
-                className="userPNG"
-            />
+            <img src={userIcon} alt="img" className="userPNG" />
             <p className="pText">Choose what data you want to generate</p>
             {showSelectedCheckbox && (
                 <Checked
@@ -62,6 +60,7 @@ function App() {
                     quantity={quantity}
                 />
             )}
+            <Alert />
         </div>
     );
 }
